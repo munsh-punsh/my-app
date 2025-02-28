@@ -1,0 +1,943 @@
+.price-calculator {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.price-calculator h2 {
+    color: #343a40;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.calculator-section {
+    margin-bottom: 40px;
+}
+
+.calculator-section h3 {
+    color: #495057;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+@media (max-width: 768px) {
+    .price-calculator {
+        padding: 15px;
+    }
+
+    .calculator-section {
+        margin-bottom: 30px;
+    }
+}
+
+.calculator {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.5rem;
+    box-sizing: border-box;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.logo-text {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.logo-dot {
+    color: #007bff;
+}
+
+h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group.checkbox label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.form-group.checkbox input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
+.form-group select,
+.form-group input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.result {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.result h3 {
+    color: #2c3e50;
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.dimensions {
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+.price-details {
+    color: #495057;
+    line-height: 1.6;
+}
+
+.form-group select option {
+    padding: 8px;
+}
+
+.form-group select option:first-child {
+    font-weight: bold;
+}
+
+@media (max-width: 480px) {
+    .price-details {
+        font-size: 0.8rem;
+    }
+    
+    .form-group select {
+        font-size: 0.9rem;
+    }
+}
+
+.examples-button {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #495057;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.examples-button:hover {
+    background-color: #e9ecef;
+    border-color: #ced4da;
+}
+
+.examples-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.image-container:hover img {
+    transform: scale(1.05);
+}
+
+.image-container.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+    min-height: 150px;
+}
+
+.image-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f8f9fa;
+    color: #6c757d;
+}
+
+.example-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.example-image:hover {
+    transform: scale(1.05);
+}
+
+/* Модальное окно */
+.image-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 2rem;
+}
+
+/* Контейнер для изображения в модальном окне */
+.image-modal .image-container {
+    position: relative;
+    width: auto;
+    height: auto;
+    max-width: 90vw;
+    max-height: 90vh;
+    background: none;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.image-modal .image-container img {
+    position: static;
+    width: auto;
+    height: auto;
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+.close-modal {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 1001;
+}
+
+.close-modal:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+/* Рекомендации по размерам */
+.size-recommendations {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #e9ecef;
+}
+
+.size-recommendation {
+    position: relative;
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    overflow: hidden;
+}
+
+.size-recommendation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #007bff;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.size-recommendation:hover {
+    background: #fff;
+    border-color: #007bff;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.size-recommendation:hover::before {
+    opacity: 1;
+}
+
+.size-dimensions {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 0.25rem;
+}
+
+.size-description {
+    font-size: 0.85rem;
+    color: #6c757d;
+    line-height: 1.4;
+}
+
+/* Стили для сеток */
+.style-schemes,
+.color-schemes,
+.room-schemes,
+.shape-schemes,
+.complexity-schemes,
+.urgency-schemes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 0.75rem;
+}
+
+/* Общие стили для всех карточек */
+.style-scheme,
+.color-scheme,
+.room-scheme,
+.shape-scheme,
+.complexity-scheme,
+.urgency-scheme {
+    position: relative;
+    padding: 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--scheme-color, #f8f9fa), var(--scheme-color-light, #ffffff));
+    color: var(--text-color, #333);
+    border: 2px solid transparent;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Эффекты при наведении для всех карточек */
+.style-scheme:hover,
+.color-scheme:hover,
+.room-scheme:hover,
+.shape-scheme:hover,
+.complexity-scheme:hover,
+.urgency-scheme:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Стили для выбранных карточек */
+.style-scheme.selected,
+.color-scheme.selected,
+.room-scheme.selected,
+.shape-scheme.selected,
+.complexity-scheme.selected,
+.urgency-scheme.selected {
+    border: 2px solid #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+/* Эффект свечения для всех карточек */
+.style-scheme::before,
+.color-scheme::before,
+.room-scheme::before,
+.shape-scheme::before,
+.complexity-scheme::before,
+.urgency-scheme::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+    transform: rotate(45deg);
+    pointer-events: none;
+}
+
+/* Стили для названий */
+.style-name,
+.color-name,
+.room-name,
+.shape-name,
+.complexity-name,
+.urgency-name {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для описаний */
+.style-description,
+.color-description,
+.room-description,
+.shape-description,
+.complexity-description,
+.urgency-description {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+/* Специальные стили для коэффициентов */
+.complexity-coefficient,
+.urgency-coefficient {
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #007bff;
+    margin: 0.25rem 0;
+}
+
+/* Стили для превью формы */
+.shape-preview {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 0.75rem;
+    background-color: currentColor;
+}
+
+.square-preview {
+    border-radius: 4px;
+}
+
+.circle-preview {
+    border-radius: 50%;
+}
+
+/* Адаптивность */
+@media (max-width: 1400px) {
+    .calculator {
+        max-width: 100%;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 1200px) {
+    .style-schemes,
+    .color-schemes,
+    .room-schemes,
+    .shape-schemes,
+    .complexity-schemes,
+    .urgency-schemes {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .calculator {
+        padding: 0.75rem;
+    }
+
+    .form-group {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .style-schemes,
+    .color-schemes,
+    .room-schemes,
+    .shape-schemes,
+    .complexity-schemes,
+    .urgency-schemes {
+        grid-template-columns: 1fr;
+    }
+
+    .examples-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .size-recommendations {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+
+    .image-modal {
+        padding: 1rem;
+    }
+
+    .image-modal .image-container,
+    .image-modal .image-container img {
+        max-width: 95vw;
+        max-height: 95vh;
+    }
+    
+    .close-modal {
+        top: 10px;
+        right: 10px;
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .calculator {
+        padding: 0.5rem;
+    }
+
+    .form-group {
+        padding: 1rem;
+    }
+
+    .logo-text {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .example-image {
+        height: 150px;
+    }
+
+    .size-dimensions {
+        font-size: 0.9rem;
+    }
+
+    .size-description {
+        font-size: 0.8rem;
+    }
+
+    .image-modal {
+        padding: 0.5rem;
+    }
+
+    .image-modal .image-container,
+    .image-modal .image-container img {
+        max-width: 98vw;
+        max-height: 98vh;
+    }
+    
+    .close-modal {
+        top: 5px;
+        right: 5px;
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+    }
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.form-group {
+    animation: fadeIn 0.3s ease;
+}
+
+/* Улучшенные стили для инпутов */
+input[type="number"] {
+    width: 100%;
+    max-width: none;
+    padding: 0.5rem;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    background: #f8f9fa;
+}
+
+input[type="number"]:focus {
+    border-color: #007bff;
+    background: #fff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+/* Чекбокс */
+.checkbox {
+    background: #f8f9fa;
+    padding: 0.75rem;
+    border-radius: 4px;
+    border: 1px solid #e9ecef;
+    margin-bottom: 1rem;
+}
+
+.checkbox label {
+    font-size: 0.9rem;
+    color: #495057;
+    margin: 0;
+}
+
+.checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin-right: 0.5rem;
+    accent-color: #007bff;
+}
+
+/* Стили для блока с размерами */
+.dimensions-container {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.dimensions-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.dimensions-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0;
+}
+
+/* Переключатель формы */
+.shape-toggle {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.25rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+}
+
+.shape-toggle-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #495057;
+    transition: all 0.2s ease;
+}
+
+.shape-toggle-btn.active {
+    background: #fff;
+    color: #007bff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Группа размеров */
+.dimensions-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.dimension-input {
+    position: relative;
+}
+
+.dimension-input label {
+    position: absolute;
+    top: -0.5rem;
+    left: 0.75rem;
+    padding: 0 0.25rem;
+    background: #fff;
+    font-size: 0.8rem;
+    color: #6c757d;
+    z-index: 1;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background: #fff;
+    transition: all 0.2s ease;
+}
+
+input[type="number"]:hover {
+    border-color: #ced4da;
+}
+
+input[type="number"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    outline: none;
+}
+
+/* Чекбокс для одинаковых сторон */
+.checkbox {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.checkbox:hover {
+    background: #fff;
+    border-color: #ced4da;
+}
+
+.checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 0.75rem;
+    accent-color: #007bff;
+    cursor: pointer;
+}
+
+.checkbox label {
+    font-size: 0.9rem;
+    color: #495057;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Рекомендации по размерам */
+.size-recommendations {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #e9ecef;
+}
+
+.size-recommendation {
+    position: relative;
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    overflow: hidden;
+}
+
+.size-recommendation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #007bff;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.size-recommendation:hover {
+    background: #fff;
+    border-color: #007bff;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.size-recommendation:hover::before {
+    opacity: 1;
+}
+
+.size-dimensions {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 0.25rem;
+}
+
+.size-description {
+    font-size: 0.85rem;
+    color: #6c757d;
+    line-height: 1.4;
+}
+
+/* Адаптивность для размеров */
+@media (max-width: 768px) {
+    .dimensions-group {
+        grid-template-columns: 1fr;
+    }
+
+    .size-recommendations {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+    
+    .dimensions-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .dimensions-container {
+        padding: 1rem;
+    }
+
+    .dimension-input label {
+        font-size: 0.75rem;
+    }
+
+    input[type="number"] {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+
+    .size-dimensions {
+        font-size: 0.9rem;
+    }
+
+    .size-description {
+        font-size: 0.8rem;
+    }
+    
+    .shape-toggle {
+        width: 100%;
+    }
+    
+    .shape-toggle-btn {
+        flex: 1;
+        text-align: center;
+    }
+}
+
+/* Анимация появления модального окна */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.image-modal .image-container {
+    animation: modalFadeIn 0.2s ease forwards;
+}
+
+.color-schemes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.color-scheme {
+    position: relative;
+    padding: 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--scheme-color), var(--scheme-color-light));
+    color: var(--text-color);
+    border: 2px solid transparent;
+}
+
+.color-scheme:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.color-scheme.selected {
+    border: 2px solid #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.color-scheme::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+    transform: rotate(45deg);
+    pointer-events: none;
+}
+
+.color-name {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.color-description {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.9;
+    line-height: 1.4;
+} 
